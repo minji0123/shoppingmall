@@ -1,0 +1,98 @@
+.App {
+  text-align: center;
+}
+
+.main-bg {
+  height : 500px;
+  background-image : url('./bg.png');
+  background-size : cover;
+  background-position : center;
+}
+
+.mt_50{
+  margin-top: 50px;
+}
+.mt_100{
+  margin-top: 100px;
+}
+
+.mb_50{
+  margin-bottom: 50px;
+}
+.mb_100{
+  margin-bottom: 100px;
+}
+.mb_200{
+  margin-bottom: 200px;
+}
+
+.ml_3{
+  margin-left :3px;
+}
+
+.mr_3{
+  margin-right:3px;
+}
+
+.border_none{
+  border-color: white;
+
+}
+
+.mr_500{
+  margin-right: 500px;
+}
+
+.height1{
+  height: 2000px;
+}
+/*전환 애니메이션*/
+/*transition은 "해당 속성이 변할 때 서서히 변경해주세요~" 라는 뜻입니다.*/
+.start {
+  opacity : 0
+}
+.end {
+  opacity : 1;
+  transition : opacity 0.5s;
+}
+
+.white{
+  color:white;
+}
+.black{
+  color:black;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
