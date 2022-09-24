@@ -1,8 +1,8 @@
 {
-  "name": "shoeshop",
+  "name": "shoppingmall",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://minji0123.github.io/shoeshop",
+  "homepage": "http://minji0123.github.io/shoppingmall",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@tanstack/react-query": "^4.2.3",
