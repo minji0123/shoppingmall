@@ -17,7 +17,6 @@ function App() {
   let [shoes,setShoes] = useState([]);
   let [storage,setStorage] = useState(JSON.parse(localStorage.getItem('watched')));
   let [clickState,setClickState] = useState(0);
-  let [clickCount,setClickCount] = useState(1);
   let navigate = useNavigate();
 
   // ------------------------
@@ -54,9 +53,19 @@ function App() {
 
   },[]);
 
+  // ------------------------------------
+  // 로컬스토리지 만들어주기
+  // ------------------------------------
+  // 최근본상품 
   if(!localStorage.getItem('watched'))
   localStorage.setItem('watched',JSON.stringify([]));
 
+  // 장바구니
+  // if(!localStorage.getItem('carted'))
+  // localStorage.setItem('carted',JSON.stringify([]));
+
+
+  // 클릭할 때 마다 로클스토리지 새로고침
   useEffect(()=>{
     setStorage(JSON.parse(localStorage.getItem('watched')));
   }, [clickState]);

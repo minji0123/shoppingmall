@@ -1,6 +1,7 @@
 /* eslint-disable */
 import {Table} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import {useEffect, useState} from "react"
 import { changeName } from './../store/userSlice.js'// 3. 만든 함수 import 해서 사용
 import { changeCount,changeCountMinus,changeItemDel } from './../store.js'// 3. 만든 함수 import 해서 사용
 import {Button} from 'react-bootstrap';
@@ -9,22 +10,24 @@ import Notice from "../Notice";
 
 
 function Cart(){
+    // 장바구니 로컬스토리지...
+    // let [carted,setcarted] = useState(JSON.parse(localStorage.getItem('carted')));
+    // console.log('carted',carted);
+
 
     // let state = useSelector((state) => {return state})// <- Redux store 가져와줌(object 임)
                                         //state.user 처럼 원하는것만 return 가능 
 
     // Redux 변수 사용
     let 상품들 = useSelector((state) => {return state.cart})// <- Redux store 가져와줌(object 임)
-    
+    console.log('상품들상품들',상품들);
     // Redux 함수 사용
     let dispatch = useDispatch();// store.js 로 요청 보내주는 함수임
     
     
     return(
         <div className='container'>
-
             <Table className='mb_200 '>
-
                 <thead>
                     <tr>
                         <th>#</th>
@@ -41,7 +44,7 @@ function Cart(){
                             return(
                                 <tr key={i}>
                                     <td>{상품들[i].id}</td>
-                                    <td>{상품들[i].name}</td>
+                                    <td>{상품들[i].title}</td>
                                     <td>{상품들[i].count}</td>
                                     <td>{상품들[i].price * 상품들[i].count}</td>
                                     <td>

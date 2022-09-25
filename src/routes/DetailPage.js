@@ -74,7 +74,9 @@ function DetailPage(props){
 
       console.log('====찾은상품=======',찾은상품);
 
-
+    // ------------------------
+    // 로컬스토리지 저장하기
+    // ------------------------
     // 일단 꺼내고 변환해주고 밀어넣은다음에 집어넣는다.
     // 일단 get 하고 parse 해주고 push 해준다음에 set 해준다.
 
@@ -164,6 +166,27 @@ function DetailPage(props){
                     }
                     dispatch(changeItem(param));
                     cartTimer();
+
+                    // 주문하기 버튼 클릭 시 로컬스토리지에 값 저장하기!
+                        // ------------------------
+                        // 로컬스토리지 저장하기
+                        // ------------------------
+                        // 일단 꺼내고 변환해주고 밀어넣은다음에 집어넣는다.
+                        // 일단 get 하고 parse 해주고 push 해준다음에 set 해준다.
+
+                        // 일단 get 하고
+                        let carted2 = localStorage.getItem('carted');
+                        // parse 해주고
+                        carted2 = JSON.parse(carted2);
+                        // push 해준다음에
+                        carted2.push(id);
+                        
+                        // 근데 중복제거 해주고 싶으니까 set 함수를 사용한다.
+                        carted2 = new Set(carted2);
+                        carted2 = Array.from(carted2);
+
+                        // set 해준다.
+                        localStorage.setItem('carted', JSON.stringify(carted2));
                 }}
                 >주문하기</button>
 
@@ -221,7 +244,10 @@ function DetailPage(props){
     return (
       <div className={`start ${fade}`}>
         { [
-        <div>
+        <div className="mt_100 mb_100">
+            <h1>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+            </h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
               Nullam aliquam, elit eu maximus fringilla, arcu lectus gravida dolor, et maximus diam enim at nisl. Sed in justo dui. Maecenas malesuada 
@@ -255,7 +281,78 @@ function DetailPage(props){
             </p>
         </div>,
         
-        <div>내용1</div>, <div>내용2</div>][props.tab] }
+        <div className="mt_100 mb_100">
+            <h1>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+            </h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+              Nullam aliquam, elit eu maximus fringilla, arcu lectus gravida dolor, et maximus diam enim at nisl. Sed in justo dui. Maecenas malesuada 
+              sit amet urna at euismod. Donec sed nulla ex. Morbi luctus, lacus sed egestas consequat, lectus tortor vestibulum ante, eget aliquam neque 
+              elit quis leo. Vivamus pulvinar quis magna at volutpat.
+            </p>
+            <p>
+              Curabitur finibus lectus sit amet augue venenatis, eget pulvinar purus tempus. Aliquam 
+              gravida magna et posuere feugiat. Sed cursus neque ut auctor consectetur. Duis sed velit sed augue feugiat bibendum. 
+              Quisque eu elit vitae diam scelerisque tincidunt vel eget tortor. Vestibulum mollis pharetra turpis, a egestas urna feugiat at. 
+              Cras malesuada a mi id dapibus. In sagittis augue quis ligula vestibulum consectetur. Donec ultricies porttitor mauris semper 
+              placerat. Donec gravida est in placerat iaculis. Proin tristique ac diam vel posuere. Curabitur vitae maximus arcu. Ut vitae hendrerit 
+              libero. Curabitur dictum malesuada euismod. Nam a neque quis sem fringilla auctor a eget urna.
+            </p>
+            <p>
+              Cras ullamcorper tristique nulla pretium ornare. Ut aliquet dolor et libero ultrices mollis. Donec scelerisque ultricies ligula, in egestas sem. 
+              Praesent viverra turpis at turpis egestas eleifend. Aliquam imperdiet purus vel volutpat mollis. Proin ornare elementum purus, fringilla mollis 
+              purus rutrum aliquam. Donec vehicula dignissim libero a pretium. Duis eu libero malesuada, dapibus ante ac, blandit augue. Ut at nisi eu augue congue porttitor. Nullam purus tortor, dapibus nec tempus eu, consequat in diam. Cras porttitor rhoncus imperdiet. Suspendisse potenti. Vestibulum nisi mauris, posuere ac luctus non, sagittis id magna. Donec sit amet tortor imperdiet, fringilla orci in, porttitor odio.
+            </p>
+            <p>
+              Vestibulum laoreet a dui eu hendrerit. Praesent nec turpis urna. Pellentesque pellentesque libero at ante tempor, in luctus dui molestie. Duis ut 
+              tellus at nibh volutpat euismod. Duis accumsan commodo tincidunt. Nulla vel quam ex. Morbi elementum, ante quis egestas consequat, ante lacus eleifend urna, sed ultrices ligula augue sit amet est. Integer varius mi sed dapibus rhoncus. Quisque massa sem, aliquam at eros ultricies, cursus sagittis nunc. Aliquam semper risus nec nisi luctus placerat.
+            </p>
+            <p>
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras cursus, quam vel tempus congue, tellus est porta mi, 
+              ac ultrices nulla ligula at odio. Ut at nunc at quam vestibulum suscipit id eu nibh. Nunc lobortis nulla leo, sit amet ultrices mi eleifend et. 
+              Vestibulum mi augue, egestas rhoncus mi non, consequat viverra mi. Praesent ex erat, hendrerit eget dui ac, rhoncus eleifend lacus. Phasellus suscipit 
+              sit amet mi a egestas. Sed quis velit vel erat malesuada sollicitudin. Aenean id purus ligula. Fusce nec risus nunc. Maecenas tempus, nunc a commodo laoreet, 
+              diam dolor convallis nisl, eget scelerisque ex arcu ac massa. Donec in placerat lacus. Quisque nisl erat, tempor nec imperdiet quis, varius non est. Nullam a 
+              justo eget lectus pellentesque molestie at eu eros.
+            </p>
+        </div>, 
+        <div className="mt_100 mb_100">
+            <h1>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+            </h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+              Nullam aliquam, elit eu maximus fringilla, arcu lectus gravida dolor, et maximus diam enim at nisl. Sed in justo dui. Maecenas malesuada 
+              sit amet urna at euismod. Donec sed nulla ex. Morbi luctus, lacus sed egestas consequat, lectus tortor vestibulum ante, eget aliquam neque 
+              elit quis leo. Vivamus pulvinar quis magna at volutpat.
+            </p>
+            <p>
+              Curabitur finibus lectus sit amet augue venenatis, eget pulvinar purus tempus. Aliquam 
+              gravida magna et posuere feugiat. Sed cursus neque ut auctor consectetur. Duis sed velit sed augue feugiat bibendum. 
+              Quisque eu elit vitae diam scelerisque tincidunt vel eget tortor. Vestibulum mollis pharetra turpis, a egestas urna feugiat at. 
+              Cras malesuada a mi id dapibus. In sagittis augue quis ligula vestibulum consectetur. Donec ultricies porttitor mauris semper 
+              placerat. Donec gravida est in placerat iaculis. Proin tristique ac diam vel posuere. Curabitur vitae maximus arcu. Ut vitae hendrerit 
+              libero. Curabitur dictum malesuada euismod. Nam a neque quis sem fringilla auctor a eget urna.
+            </p>
+            <p>
+              Cras ullamcorper tristique nulla pretium ornare. Ut aliquet dolor et libero ultrices mollis. Donec scelerisque ultricies ligula, in egestas sem. 
+              Praesent viverra turpis at turpis egestas eleifend. Aliquam imperdiet purus vel volutpat mollis. Proin ornare elementum purus, fringilla mollis 
+              purus rutrum aliquam. Donec vehicula dignissim libero a pretium. Duis eu libero malesuada, dapibus ante ac, blandit augue. Ut at nisi eu augue congue porttitor. Nullam purus tortor, dapibus nec tempus eu, consequat in diam. Cras porttitor rhoncus imperdiet. Suspendisse potenti. Vestibulum nisi mauris, posuere ac luctus non, sagittis id magna. Donec sit amet tortor imperdiet, fringilla orci in, porttitor odio.
+            </p>
+            <p>
+              Vestibulum laoreet a dui eu hendrerit. Praesent nec turpis urna. Pellentesque pellentesque libero at ante tempor, in luctus dui molestie. Duis ut 
+              tellus at nibh volutpat euismod. Duis accumsan commodo tincidunt. Nulla vel quam ex. Morbi elementum, ante quis egestas consequat, ante lacus eleifend urna, sed ultrices ligula augue sit amet est. Integer varius mi sed dapibus rhoncus. Quisque massa sem, aliquam at eros ultricies, cursus sagittis nunc. Aliquam semper risus nec nisi luctus placerat.
+            </p>
+            <p>
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras cursus, quam vel tempus congue, tellus est porta mi, 
+              ac ultrices nulla ligula at odio. Ut at nunc at quam vestibulum suscipit id eu nibh. Nunc lobortis nulla leo, sit amet ultrices mi eleifend et. 
+              Vestibulum mi augue, egestas rhoncus mi non, consequat viverra mi. Praesent ex erat, hendrerit eget dui ac, rhoncus eleifend lacus. Phasellus suscipit 
+              sit amet mi a egestas. Sed quis velit vel erat malesuada sollicitudin. Aenean id purus ligula. Fusce nec risus nunc. Maecenas tempus, nunc a commodo laoreet, 
+              diam dolor convallis nisl, eget scelerisque ex arcu ac massa. Donec in placerat lacus. Quisque nisl erat, tempor nec imperdiet quis, varius non est. Nullam a 
+              justo eget lectus pellentesque molestie at eu eros.
+            </p>
+        </div>][props.tab] }
       </div>
     )
   }

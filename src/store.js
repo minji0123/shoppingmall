@@ -43,11 +43,31 @@ export let {changeAge,함수2,함수3,등등,} = stock.actions;
 // 3. 만든 함수 import 해서 사용
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// let carted = JSON.parse(localStorage.getItem('carted'));
+// console.log('cartedcartedcartedcarted',carted);
 // 장바구니
 let cart = createSlice({
     name:'stock',
-    initialState:[],
+    initialState:[
+        {
+            id: 0,
+            title: "Blue",
+            count: 1,
+            price: 100000,
+          },    
+          {
+            id: 3,
+            title: "GoGo",
+            count:2,
+            price: 140000,
+          },    
+        {
+            id: 7,
+            title: "Cinema",
+            count:2,
+            price: 110000,
+          },
+    ],
     reducers : {
         changeCount(state,action){
             let a = state.find((e) => e.id === action.payload);
