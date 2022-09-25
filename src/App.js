@@ -15,7 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 function App() {
   let [shoes,setShoes] = useState([]);
   let [storage,setStorage] = useState(JSON.parse(localStorage.getItem('watched')));
-  let [clickState,setClickState] = useState(0);
+  let [clickState,setClickState] = useState(false);
   let navigate = useNavigate();
 
   // ------------------------------------
@@ -49,7 +49,7 @@ function App() {
   // 클릭할 때 마다 로클스토리지 새로고침
   useEffect(()=>{
     setStorage(JSON.parse(localStorage.getItem('watched')));
-  }, [clickState]);
+  }, [clickState,]);
   
   
   return (
@@ -74,11 +74,9 @@ function App() {
           <h1 className="one_border pb_50 pt_50">TheMinnnnmi</h1>
 
           <div className='row'>
-
             <div className="container mt_200 mb_50 col-md-9 ml_0 pl_0" >
               <div className="row"
-                  onClick={() => { setClickState(clickState+1)
-                    }}
+                  onClick={() => { setClickState(!clickState)}}
                     >
                 {
                   shoes.map((a,i)=>{
@@ -98,7 +96,7 @@ function App() {
                   <Button variant="outline-danger" 
                     className='border_none'
                   onClick={() => {localStorage.setItem('watched',JSON.stringify([]))
-                  setClickState(clickState+1)
+                  setClickState(!clickState)
                 }}>x</Button>
                 </Card.Header>
                 <Card.Body>

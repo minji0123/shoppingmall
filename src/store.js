@@ -51,19 +51,19 @@ let cart = createSlice({
     initialState:[
         {
             id: 0,
-            title: "Blue",
+            name: "Blue",
             count: 1,
             price: 100000,
           },    
           {
             id: 3,
-            title: "GoGo",
+            name: "GoGo",
             count:2,
             price: 140000,
           },    
         {
             id: 7,
-            title: "Cinema",
+            name: "Cinema",
             count:2,
             price: 110000,
           },

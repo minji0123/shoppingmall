@@ -43,7 +43,7 @@ function Cart(){
                             return(
                                 <tr key={i}>
                                     <td>{상품들[i].id}</td>
-                                    <td>{상품들[i].title}</td>
+                                    <td>{상품들[i].name}</td>
                                     <td>{상품들[i].count}</td>
                                     <td>{상품들[i].price * 상품들[i].count}</td>
                                     <td>
