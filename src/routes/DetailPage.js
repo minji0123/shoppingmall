@@ -20,13 +20,14 @@ function DetailPage(props){
   // 유저가 url 파라미터에 입력한 걸 갖고올 때 사용하는 훅
   let {id} = useParams();
 
-  // 2. 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능
-  let 상품들 = useSelector((state) => {return state.cart})// <- Redux store 가져와줌(object 임)
 
 
   // ------------------------
   // 장바구니 redux
   // ------------------------
+  // 2. 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능
+  let 상품들 = useSelector((state) => {return state.cart})// <- Redux store 가져와줌(object 임)
+
   let dispatch = useDispatch();// store.js 로 요청 보내주는 함수임
 
 
@@ -40,14 +41,6 @@ function DetailPage(props){
     },2000);
   }
 
-
-  // ------------------------
-  // 데이터 받아오는 useEffect
-  // ------------------------
-  useEffect(() => {
-
-
-  },[])
 
   // ------------------------
   // 컴포넌트 전환 애니메이션
@@ -65,7 +58,9 @@ function DetailPage(props){
   // 상세페이지에서 봤던 상품의 번호들을 localStorage 에 저장하기
   // ------------------------
   useEffect(()=>{
-
+  // ------------------------
+  // 데이터 받아오는 useEffect
+  // ------------------------
     axios.get(`https://minji0123.github.io/shoppingmall/data/items.json`)
 
     .then((결과)=>{
@@ -73,11 +68,7 @@ function DetailPage(props){
       // 성공했을때 실행
       
       let limit = [];
-
       limit.push(...결과.data);
-
-      console.log(limit,'limitlimitlimitlimit');
-      console.log(limit[id],'copy1copy1copy1copy1');
 
       찾은상품설정(limit[id]);
 
@@ -159,13 +150,16 @@ function DetailPage(props){
                   <Card.Text>{찾은상품.price} 원</Card.Text>
                   <hr/>
                   {찾은상품.Char}
-                  {/* 1+1 이벤트😊 */}
                   <hr/>
-
+                  <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. Nullam aliquam,
+                  elit eu maximus fringilla, arcu lectus gravida dolor, et maximus diam enim at nisl. Sed in justo dui. Maecenas malesuada sit amet urna at euismod. Donec sed nulla ex. Morbi luctus, Donec sed nulla ex. Morbi luctus, 
+                  </p>
                   <button className="btn btn-danger" onClick={()=>{
                     let param = {
                       id:찾은상품.id,
                       name:찾은상품.title,
+                      price:찾은상품.price,
                       count:1,
                     }
                     dispatch(changeItem(param));
@@ -226,7 +220,42 @@ function DetailPage(props){
     },[props.tab])
     return (
       <div className={`start ${fade}`}>
-        { [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab] }
+        { [
+        <div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin nisi. Cras sagittis magna nec ex consequat bibendum. 
+              Nullam aliquam, elit eu maximus fringilla, arcu lectus gravida dolor, et maximus diam enim at nisl. Sed in justo dui. Maecenas malesuada 
+              sit amet urna at euismod. Donec sed nulla ex. Morbi luctus, lacus sed egestas consequat, lectus tortor vestibulum ante, eget aliquam neque 
+              elit quis leo. Vivamus pulvinar quis magna at volutpat.
+            </p>
+            <p>
+              Curabitur finibus lectus sit amet augue venenatis, eget pulvinar purus tempus. Aliquam 
+              gravida magna et posuere feugiat. Sed cursus neque ut auctor consectetur. Duis sed velit sed augue feugiat bibendum. 
+              Quisque eu elit vitae diam scelerisque tincidunt vel eget tortor. Vestibulum mollis pharetra turpis, a egestas urna feugiat at. 
+              Cras malesuada a mi id dapibus. In sagittis augue quis ligula vestibulum consectetur. Donec ultricies porttitor mauris semper 
+              placerat. Donec gravida est in placerat iaculis. Proin tristique ac diam vel posuere. Curabitur vitae maximus arcu. Ut vitae hendrerit 
+              libero. Curabitur dictum malesuada euismod. Nam a neque quis sem fringilla auctor a eget urna.
+            </p>
+            <p>
+              Cras ullamcorper tristique nulla pretium ornare. Ut aliquet dolor et libero ultrices mollis. Donec scelerisque ultricies ligula, in egestas sem. 
+              Praesent viverra turpis at turpis egestas eleifend. Aliquam imperdiet purus vel volutpat mollis. Proin ornare elementum purus, fringilla mollis 
+              purus rutrum aliquam. Donec vehicula dignissim libero a pretium. Duis eu libero malesuada, dapibus ante ac, blandit augue. Ut at nisi eu augue congue porttitor. Nullam purus tortor, dapibus nec tempus eu, consequat in diam. Cras porttitor rhoncus imperdiet. Suspendisse potenti. Vestibulum nisi mauris, posuere ac luctus non, sagittis id magna. Donec sit amet tortor imperdiet, fringilla orci in, porttitor odio.
+            </p>
+            <p>
+              Vestibulum laoreet a dui eu hendrerit. Praesent nec turpis urna. Pellentesque pellentesque libero at ante tempor, in luctus dui molestie. Duis ut 
+              tellus at nibh volutpat euismod. Duis accumsan commodo tincidunt. Nulla vel quam ex. Morbi elementum, ante quis egestas consequat, ante lacus eleifend urna, sed ultrices ligula augue sit amet est. Integer varius mi sed dapibus rhoncus. Quisque massa sem, aliquam at eros ultricies, cursus sagittis nunc. Aliquam semper risus nec nisi luctus placerat.
+            </p>
+            <p>
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras cursus, quam vel tempus congue, tellus est porta mi, 
+              ac ultrices nulla ligula at odio. Ut at nunc at quam vestibulum suscipit id eu nibh. Nunc lobortis nulla leo, sit amet ultrices mi eleifend et. 
+              Vestibulum mi augue, egestas rhoncus mi non, consequat viverra mi. Praesent ex erat, hendrerit eget dui ac, rhoncus eleifend lacus. Phasellus suscipit 
+              sit amet mi a egestas. Sed quis velit vel erat malesuada sollicitudin. Aenean id purus ligula. Fusce nec risus nunc. Maecenas tempus, nunc a commodo laoreet, 
+              diam dolor convallis nisl, eget scelerisque ex arcu ac massa. Donec in placerat lacus. Quisque nisl erat, tempor nec imperdiet quis, varius non est. Nullam a 
+              justo eget lectus pellentesque molestie at eu eros.
+            </p>
+        </div>,
+        
+        <div>내용1</div>, <div>내용2</div>][props.tab] }
       </div>
     )
   }

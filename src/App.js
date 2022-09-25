@@ -27,6 +27,7 @@ function App() {
   // 1. store.js 파일생성 
   // 2. index.js 가서 <Provider store = {store}> 해주기
 
+
   // ------------------------
   // localStorage
   // ------------------------
