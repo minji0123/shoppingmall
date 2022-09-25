@@ -4,7 +4,7 @@
 
 .main-bg {
   height : 500px;
-  background-image : url('./bg.png');
+  background-image : url('./mainshoes.jpg');
   background-size : cover;
   background-position : center;
 }
@@ -14,6 +14,9 @@
 }
 .mt_100{
   margin-top: 100px;
+}
+.mt_200{
+  margin-top: 200px;
 }
 
 .mb_50{
@@ -26,25 +29,66 @@
   margin-bottom: 200px;
 }
 
+.ml_0{
+  margin-left :0px;
+}
 .ml_3{
   margin-left :3px;
 }
 
+.mr_0{
+  margin-right: 0px;
+}
 .mr_3{
   margin-right:3px;
 }
+.mr_500{
+  margin-right: 500px;
+}
+
+
+
+.pb_50{
+  padding-bottom: 50px;
+}
+.pt_50{
+  padding-top: 50px;
+}
+
+.pb_30{
+  padding-bottom: 30px;
+}
+.pt_30{
+  padding-top: 30px;
+}
+
+.pl_0{
+  padding-left :0px;
+}
+
 
 .border_none{
   border-color: white;
 
 }
 
-.mr_500{
-  margin-right: 500px;
+
+.one_border {
+  border-style: solid;
+  border-width: 1px;
 }
 
 .height1{
   height: 2000px;
+}
+
+
+.info-tag > p{
+  margin: 0;
+}
+
+#notice{
+  bottom: 1000px;
 }
 /*전환 애니메이션*/
 /*transition은 "해당 속성이 변할 때 서서히 변경해주세요~" 라는 뜻입니다.*/
@@ -54,6 +98,12 @@
 .end {
   opacity : 1;
   transition : opacity 0.5s;
+}
+
+/*기타*/
+.main-category{
+  padding: 0;
+  margin-left: 0px;
 }
 
 .white{

@@ -1,13 +1,27 @@
 /* eslint-disable */
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import user from './store/userSlice.js'
+import axios from 'axios';
+
 // ----------------------------------------
 // Redux store 에 state 보관하는 법
 // ----------------------------------------
 
+// 사용하는방법
+let 사용법 = createSlice({
+    name:'state이름작명!',
+    initialState: '실제 state 값',
+      
+    // ----------------------------------------
+    // Redux store 안 state 수정해주기_Reference type
+    // ----------------------------------------
+
+})
+
+
 // 재고
 let stock = createSlice({
-    name:'stock',
+     name:'stock',
     initialState: {name : 'White',age:20 },
       
     // ----------------------------------------
@@ -35,8 +49,7 @@ export let {changeAge,} = stock.actions;
 let cart = createSlice({
     name:'stock',
     initialState:[
-        {id : 0, name : 'White and Black', count : 2},
-        {id : 2, name : 'Grey Yordan', count : 1},
+        
       ],
     reducers : {
         changeCount(state,action){
@@ -71,7 +84,6 @@ let cart = createSlice({
             console.log(번호);
 
             if(a){
-                // delete state[번호];
                 state.splice(번호,1)
             }
         }
@@ -86,5 +98,6 @@ export default configureStore({
         user : user.reducer,
         stock : stock.reducer,
         cart : cart.reducer,
+        작명 : 사용법.reducer,
     }
 })

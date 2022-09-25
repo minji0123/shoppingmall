@@ -1,38 +1,53 @@
 /* eslint-disable */
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import {Nav} from "react-bootstrap";
+import { Nav,Card,Button } from "react-bootstrap";
 import '../App.css';
-// import { changeName } from './../store/userSlice.js'// 3. 만든 함수 import 해서 사용
-import { changeItem, } from './../store.js'// 3. 만든 함수 import 해서 사용
+import axios from 'axios';
 
+import Notice from "../Notice";
+import { changeItem } from './../store.js'// 3. 만든 함수 import 해서 사용
 function DetailPage(props){
+  // console.log('===========',props);
+
+  let [alert, setAlert] = useState(false);
+  let [tab, setTab] = useState(0);
+  let [fade2, setFade2] = useState('');
+  let [찾은상품, 찾은상품설정] = useState([]);
+
+  // let 찾은상품 = {};
+  // 유저가 url 파라미터에 입력한 걸 갖고올 때 사용하는 훅
+  let {id} = useParams();
+
+  // 2. 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능
+  let 상품들 = useSelector((state) => {return state.cart})// <- Redux store 가져와줌(object 임)
+
+
+  // ------------------------
+  // 장바구니 redux
+  // ------------------------
+  let dispatch = useDispatch();// store.js 로 요청 보내주는 함수임
+
+
+  // ------------------------
+  // 장바구니 alert 창
+  // ------------------------
   function cartTimer(){
     setAlert(true);
     setTimeout(() => {
       setAlert(false)
     },2000);
   }
-  // 신버전 갈고리 다는 법
+
+
+  // ------------------------
+  // 데이터 받아오는 useEffect
+  // ------------------------
   useEffect(() => {
-    // 탭 state 가 변할 때 end 부착
-    // end 를 저기 부착해주세여
-    setFade2('end')
-   
-    return() => {
-        // useEffect 동작 전에 실행되는 코드는 여기 작성
-        // ex) 기존 타이머는 제거해주세요, 배열 비워주세요, 기존 데이터요청은 제거ㄱ
-        setFade2('')
-    }
+
 
   },[])
-
-
-  let [count, setCount] = useState(0);
-  let [alert, setAlert] = useState(false);
-  let [tab, setTab] = useState(0);
-  let [fade2, setFade2] = useState('')
 
   // ------------------------
   // 컴포넌트 전환 애니메이션
@@ -46,38 +61,38 @@ function DetailPage(props){
   // 3. className 에 transition 속성 추가하기
 
 
-  // 유저가 url 파라미터에 입력한 걸 갖고올 때 사용하는 훅
-  let {id} = useParams();
-
-
-  // 상품 순서를 가나다순으로 정렬하는 버튼
-  // 상세페이지가 불규칙해지는 문제 해결
-  let 찾은상품 = props.shoes.find(function(x){
-    return x.id == id
-  });
-
-
-
-  // 2. 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능
-  let 상품들 = useSelector((state) => {return state.cart})// <- Redux store 가져와줌(object 임)
-
-  let dispatch = useDispatch();// store.js 로 요청 보내주는 함수임
-
-  
-
-
-  //  * 상세페이지에서 봤던 상품의 번호들을 localStorage 에 저장하기
+  // ------------------------
+  // 상세페이지에서 봤던 상품의 번호들을 localStorage 에 저장하기
+  // ------------------------
   useEffect(()=>{
+
+    axios.get(`https://minji0123.github.io/shoppingmall/data/items.json`)
+
+    .then((결과)=>{
+      console.log(결과.data,'090990990090990');
+      // 성공했을때 실행
+      
+      let limit = [];
+
+      limit.push(...결과.data);
+
+      console.log(limit,'limitlimitlimitlimit');
+      console.log(limit[id],'copy1copy1copy1copy1');
+
+      찾은상품설정(limit[id]);
+
+      console.log('====찾은상품=======',찾은상품);
+
+
     // 일단 꺼내고 변환해주고 밀어넣은다음에 집어넣는다.
     // 일단 get 하고 parse 해주고 push 해준다음에 set 해준다.
-
 
     // 일단 get 하고
     let watched2 = localStorage.getItem('watched');
     // parse 해주고
     watched2 = JSON.parse(watched2);
     // push 해준다음에
-    watched2.push(찾은상품.id);
+    watched2.push(id);
     
     // 근데 중복제거 해주고 싶으니까 set 함수를 사용한다.
     watched2 = new Set(watched2);
@@ -85,19 +100,42 @@ function DetailPage(props){
 
     // set 해준다.
     localStorage.setItem('watched', JSON.stringify(watched2));
+
+    })
+    .catch(() => {
+        // 실패했을때 실행
+      console.log('실패함ㅅㄱ');
+    });
+
+  // --------------------------------------------------------------------------------------------------------------------
+
+    // 탭 state 가 변할 때 end 부착
+    // end 를 저기 부착해주세여
+    setFade2('end')
+
+    return() => {
+      // useEffect 동작 전에 실행되는 코드는 여기 작성
+      // ex) 기존 타이머는 제거해주세요, 배열 비워주세요, 기존 데이터요청은 제거ㄱ
+      setFade2('')
+    }
+
+    
   },[]);
 
 
+  // ------------------------
+  // 하단 버튼 변경하기
+  // ------------------------
   function clickBtn(n){
     setTab(n);
   }
 
+  // --------------------------------------------------------------------------------------------------------------------
+
     return(
       <>
         <div className={'container start ' + fade2}>
-        {/* <div className="alert alert-warning sale">
-          장바구니에 상품이 담겼습니다.
-        </div> */}
+
         {
           alert === true?
           <div className="alert alert-warning sale">
@@ -105,43 +143,62 @@ function DetailPage(props){
           </div>
           : null
         }
-          <div className="row">
+
+          <div className="row  mt_100 mb_100">
             <div className="col-md-6">
-              <img src={`https://codingapple1.github.io/shop/shoes${parseInt(id)+1}.jpg`} width="100%" />
+              <img src={`https://minji0123.github.io/shoppingmall/image/image${id}.jpg`} 
+                    width="100%" 
+                    />
             </div>
             <div className="col-md-6">
-              <h4 className="pt-5">{찾은상품.title}</h4>
-              <p>{찾은상품.content}</p>
-              <p>{찾은상품.price}원</p>
-              {/* 2. 상세페이지 주문하기 버튼을 누르면 새로운 상품이 state에 추가되는 기능 */}
-              <button className="btn btn-danger" onClick={()=>{
-                  let param = {
-                    id:찾은상품.id,
-                    name:찾은상품.title,
-                    count:1,
-                  }
-                  dispatch(changeItem(param));
-                  cartTimer();
-              }}
-              >주문하기</button>
+              <Card>
+                <Card.Header>상품정보</Card.Header>
+                <Card.Body>
+                  <Card.Title>{찾은상품.title}</Card.Title>
+                  <Card.Text>{찾은상품.content}</Card.Text>
+                  <Card.Text>{찾은상품.price} 원</Card.Text>
+                  <hr/>
+                  {찾은상품.Char}
+                  {/* 1+1 이벤트😊 */}
+                  <hr/>
 
+                  <button className="btn btn-danger" onClick={()=>{
+                    let param = {
+                      id:찾은상품.id,
+                      name:찾은상품.title,
+                      count:1,
+                    }
+                    dispatch(changeItem(param));
+                    cartTimer();
+                }}
+                >주문하기</button>
+
+
+                </Card.Body>
+              </Card>
             </div>
           </div>
         </div> 
 
-        <Nav variant="tabs" defaultActiveKey="link0"  >
-          <Nav.Item>
-            <Nav.Link className="black" onClick={() => {clickBtn(0)}} eventKey="link0">버튼0</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link className="black" onClick={() => {clickBtn(1)}} eventKey="link1">버튼1</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link className="black" onClick={() => {clickBtn(2)}} eventKey="link2">버튼2</Nav.Link>
-          </Nav.Item>
-        </Nav>
+        <div className="container">
+          <Nav variant="tabs" defaultActiveKey="link0"  >
+            <Nav.Item>
+              <Nav.Link className="black" onClick={() => {clickBtn(0)}} eventKey="link0">상세정보</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="black" onClick={() => {clickBtn(1)}} eventKey="link1">구매안내</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link className="black" onClick={() => {clickBtn(2)}} eventKey="link2">상품문의</Nav.Link>
+            </Nav.Item>
+          </Nav>
 
-        <TabContent tab={tab}/>
+          <TabContent tab={tab}/>
+
+          <Notice></Notice>
+
+
+        </div>
       </>
     )
   }
