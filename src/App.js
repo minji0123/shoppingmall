@@ -37,9 +37,6 @@ function App() {
    * - 
    */
   useEffect(()=>{
-    if(!localStorage.getItem('watched'))
-    localStorage.setItem('watched',JSON.stringify([]));
-
       axios.get(`https://minji0123.github.io/shoppingmall/data/items.json`)
       .then((결과)=>{
           // 성공했을때 실행
@@ -54,7 +51,11 @@ function App() {
           console.log('실패함ㅅㄱ');
 
       })
+
   },[]);
+
+  if(!localStorage.getItem('watched'))
+  localStorage.setItem('watched',JSON.stringify([]));
 
   useEffect(()=>{
     setStorage(JSON.parse(localStorage.getItem('watched')));
