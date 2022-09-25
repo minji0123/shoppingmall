@@ -14,7 +14,6 @@ function Cart(){
     // let [carted,setcarted] = useState(JSON.parse(localStorage.getItem('carted')));
     // console.log('carted',carted);
 
-
     // let state = useSelector((state) => {return state})// <- Redux store 가져와줌(object 임)
                                         //state.user 처럼 원하는것만 return 가능 
 
@@ -49,8 +48,6 @@ function Cart(){
                                     <td>{상품들[i].price * 상품들[i].count}</td>
                                     <td>
                                     <Button className='ml_3 mr-3 border_none' variant="outline-secondary" onClick={() => {
-                                        // 1. + 버튼을 누르면 해당 상품의 수량부분이 +1 되는 기능
-                                        // 1. + 버튼을 누르면 해당 상품의 가격부분이 *a 되는 기능
                                         dispatch(changeCount(상품들[i].id));
                                     }}>+</Button>
                                     <Button className='border_none' variant="outline-danger" onClick={() => {

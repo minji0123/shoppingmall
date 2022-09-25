@@ -10,7 +10,6 @@ import Notice from './Notice.js';
 import axios from 'axios';
 import Cart from './routes/Cart.js'
 import { useQuery } from '@tanstack/react-query';
-// import { getServerData } from './store.js'// 3. 만든 함수 import 해서 사용
 
 
 function App() {
@@ -19,38 +18,20 @@ function App() {
   let [clickState,setClickState] = useState(0);
   let navigate = useNavigate();
 
-  // ------------------------
-  // Redux
-  // ------------------------
-  // Redux 사용하면 컴포넌트들이 props 없이 state 공유 가능
-  // 1. store.js 파일생성 
-  // 2. index.js 가서 <Provider store = {store}> 해주기
-
-
-  // ------------------------
-  // localStorage
-  // ------------------------
-  /**
-   * 상세페이지에서 봤던 상품의 번호들을 localStorage 에 저장하기
-   * {watched : []}
-   * - 
-   */
+  // ------------------------------------
+  // 서버 데이터
+  // ------------------------------------
   useEffect(()=>{
+    setStorage(JSON.parse(localStorage.getItem('watched')));
+    
       axios.get(`https://minji0123.github.io/shoppingmall/data/items.json`)
       .then((결과)=>{
-          // 성공했을때 실행
-          
-          // 서버에서 갖고온 데이터를 shoes state 에 추가해주세여
-          let copy = [...shoes, ...결과.data]; // 1. 복사본 만들기 ([] 빠지고 알맹이만 남음 {}{}{} 얘네만)
+          let copy = [...shoes, ...결과.data];
           setShoes(copy);
-
       })
       .catch(() => {
-          // 실패했을때 실행
           console.log('실패함ㅅㄱ');
-
       })
-
   },[]);
 
   // ------------------------------------
@@ -73,26 +54,18 @@ function App() {
   
   return (
     <div className="App">
+
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand >TheMinnnnmi</Navbar.Brand>
           <Nav className="me-auto">
-            {/* 페이지 이동 버튼은 Link */}
             <Nav.Link onClick={() => {navigate('/')}}>Home</Nav.Link>
-            {/* <Nav.Link onClick={() => {navigate('/#container')}}>Detail</Nav.Link> */}
-            {/* <Nav.Link href="#container">Detail</Nav.Link> */}
             <Nav.Link onClick={() => {navigate('/Cart')}}>Cart</Nav.Link>
-            {/* <Nav.Link onClick={() => {navigate('/about')}}>About</Nav.Link> */}
             <Nav.Link href="#notice" >About</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
-
-          
-      {/*
-        <Route path="/경로" element={<div>디자인</div>}/>
-      */}
       <Routes>
         <Route path="/" element={
         <div className="container">
@@ -110,9 +83,7 @@ function App() {
                 {
                   shoes.map((a,i)=>{
                     return(
-                      // <Modal 작명 = {전송할state} />
-                      <Product 
-                      shoes={shoes} a={a} i={i} key={i} />
+                      <Product shoes={shoes} a={a} i={i} key={i} />
                     )
                   })
                 }
@@ -190,14 +161,11 @@ function App() {
         </div>
       }/>
 
-
-        {/* url 파라미터
-                      /detail/아무거나 라는 뜻 */}
         <Route path="/detail/:id" element={<DetailPage shoes={shoes}/>}/>
 
-
-        {/* Redux */}
         <Route path="/cart" element={<Cart/>}/>
+
+        <Route path="*" element={<div>없는 페이지에요</div>}/>
 
         {/* Nested Routes 
         태그 안에 태그 넣는거임 /about/member 이런거
@@ -214,7 +182,6 @@ function App() {
           <Route path="two" element={<div>생일기념 쿠폰 받기</div>}/>
         </Route>
 
-        <Route path="*" element={<div>없는 페이지에요</div>}/>
       </Routes>
 
     </div>
