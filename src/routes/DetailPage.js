@@ -118,7 +118,7 @@ function DetailPage(props){
               <Card>
                 <Card.Header>상품정보</Card.Header>
                 <Card.Body>
-                  <Card.Title>{찾은상품.title}</Card.Title>
+                  <Card.Title>{찾은상품.name}</Card.Title>
                   <Card.Text>{찾은상품.content}</Card.Text>
                   <Card.Text>{찾은상품.price} 원</Card.Text>
                   <hr/>
