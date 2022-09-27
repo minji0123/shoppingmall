@@ -131,9 +131,9 @@ function DetailPage(props){
                   <button className="btn btn-danger" onClick={()=>{
                     let param = {
                       id:찾은상품.id,
-                      name:찾은상품.title,
-                      price:찾은상품.price,
+                      name:찾은상품.name,
                       count:1,
+                      price:찾은상품.price,
                     }
                     dispatch(changeItem(param));
                     cartTimer();

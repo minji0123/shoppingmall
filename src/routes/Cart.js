@@ -40,6 +40,7 @@ function Cart(){
                 <tbody>
                     {
                         상품들.map((a,i)=>{
+                            console.log(상품들[i].name)
                             return(
                                 <tr key={i}>
                                     <td>{상품들[i].id}</td>
