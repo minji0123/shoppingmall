@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import './App.css';
 import DetailPage from './routes/DetailPage.js';
 import Notice from './component/Notice.js';
-import Notice from './component/Category.js';
+import Category from './component/Category.js';
 import axios from 'axios';
 import Cart from './routes/Cart.js'
 
@@ -72,8 +72,9 @@ function App() {
         <div className="container">
 
           <div className="main-bg"></div>
-          <h1 className="one_border pb_50 pt_50">TheMinnnnmi</h1>
+          <Category/>
 
+          <h1 className="one_border pb_50 pt_50">TheMinnnnmi</h1>
           <div className='row'>
             <div className="container mt_200 mb_50 col-md-9 ml_0 pl_0" >
               <div className="row"

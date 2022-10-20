@@ -2,7 +2,8 @@
 import { useState} from "react"
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom'
 
-import './App.css';
+import '../App.css';
+
 
 
 function Notice() {
@@ -12,7 +13,6 @@ function Notice() {
   return (
     <>
         <div className="container">
-
 
           <div className="one_border" id="notice">
             <h1>Notice</h1>
