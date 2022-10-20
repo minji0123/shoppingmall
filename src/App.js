@@ -3,13 +3,14 @@ import {useEffect, useState} from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom'
 import {Button,Navbar,Container, Nav,Card} from 'react-bootstrap';
+import { useQuery } from '@tanstack/react-query';
 
 import './App.css';
 import DetailPage from './routes/DetailPage.js';
-import Notice from './Notice.js';
+import Notice from './component/Notice.js';
+import Notice from './component/Category.js';
 import axios from 'axios';
 import Cart from './routes/Cart.js'
-import { useQuery } from '@tanstack/react-query';
 
 
 function App() {

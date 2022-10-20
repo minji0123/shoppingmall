@@ -6,7 +6,7 @@ import { changeName } from './../store/userSlice.js'// 3. 만든 함수 import �
 import { changeCount,changeCountMinus,changeItemDel } from './../store.js'// 3. 만든 함수 import 해서 사용
 import {Button} from 'react-bootstrap';
 
-import Notice from "../Notice";
+import Notice from "../component/Notice";
 
 
 function Cart(){

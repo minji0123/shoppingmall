@@ -6,7 +6,7 @@ import { Nav,Card,Button } from "react-bootstrap";
 import '../App.css';
 import axios from 'axios';
 
-import Notice from "../Notice";
+import Notice from "../component/Notice";
 import { changeItem } from './../store.js'
 
 function DetailPage(props){
