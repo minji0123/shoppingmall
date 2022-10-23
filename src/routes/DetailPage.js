@@ -100,13 +100,7 @@ function DetailPage(props){
       <>
         <div className={'container start ' + fade2}>
 
-        {
-          alert === true?
-          <div className="alert alert-warning sale">
-            장바구니에 상품이 담겼습니다. 
-          </div>
-          : null
-        }
+        
 
           <div className="row  mt_100 mb_100">
             <div className="col-md-6">
@@ -152,6 +146,14 @@ function DetailPage(props){
                 </Card.Body>
               </Card>
             </div>
+         
+            {
+              alert === true?
+              <div className="alert alert-warning sale mt_50">
+                장바구니에 상품이 담겼습니다😊
+              </div>
+              : null
+            }
           </div>
         </div> 
 
