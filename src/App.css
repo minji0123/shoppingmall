@@ -9,6 +9,9 @@
   background-position : center;
 }
 
+.mt_10{
+  margin-top: 10px;
+}
 .mt_50{
   margin-top: 50px;
 }
@@ -66,23 +69,31 @@
   padding-left :0px;
 }
 
-
-.border_none{
-  border-color: white;
-
+.cart-button{
+  cursor:pointer;
+  
 }
-
 
 .one_border {
   border-style: solid;
   border-width: 1px;
 }
 
-.height1{
-  height: 2000px;
+.lastest{
+  float: right;
+  position: sticky;
+  top: 100px;
 }
 
+.nav-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5000;
 
+  /* 생략 */
+}
 .info-tag > p{
   margin: 0;
 }

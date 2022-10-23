@@ -19,10 +19,11 @@ function App() {
   let [clickState,setClickState] = useState(false);
   let navigate = useNavigate();
 
-  // ------------------------------------
-  // 서버 데이터
-  // ------------------------------------
+
   useEffect(()=>{
+      // ------------------------------------
+      // 서버 데이터
+      // ------------------------------------
     setStorage(JSON.parse(localStorage.getItem('watched')));
     
       axios.get(`https://minji0123.github.io/shoppingmall/data/items.json`)
@@ -33,6 +34,16 @@ function App() {
       .catch(() => {
           console.log('실패함ㅅㄱ');
       })
+
+  // ------------------------------------
+  // 스크롤 이벤트
+  // ------------------------------------
+  // window.addEventListener('scroll', handleScroll, { capture: true }); // 스크롤 이벤트 등록
+  // return () => {
+  //   window.removeEventListener('scroll', handleScroll); 		// 스크롤 이벤트 제거
+  // };
+
+
   },[]);
 
   // ------------------------------------
@@ -47,7 +58,7 @@ function App() {
   // localStorage.setItem('carted',JSON.stringify([]));
 
 
-  // 클릭할 때 마다 로클스토리지 새로고침
+  // 클릭할 때 마다 로컬스토리지 새로고침
   useEffect(()=>{
     setStorage(JSON.parse(localStorage.getItem('watched')));
   }, [clickState,]);
@@ -56,7 +67,11 @@ function App() {
   return (
     <div className="App">
 
-      <Navbar bg="light" variant="light">
+
+
+
+      {/* 스크롤 이벤트 */}
+      <Navbar className="nav-fixed" bg="light" variant="light">
         <Container>
           <Navbar.Brand >TheMinnnnmi</Navbar.Brand>
           <Nav className="me-auto">
@@ -66,6 +81,9 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
+
+
+
 
       <Routes>
         <Route path="/" element={
@@ -91,8 +109,8 @@ function App() {
 
             </div>
 
-            <div className="mt_200 mb_50 col-md-2" >
-              <Card>
+            <div className="col-md-2 mt_200" >
+              <Card className="lastest">
                 <Card.Header>
                   최근 본 상품
                   <Button variant="outline-danger" 
@@ -193,6 +211,7 @@ function App() {
 
 function Latest(props){
   let navigate = useNavigate();
+  console.log('HERE',props.a);
   return(
     <>
     <Nav.Link onClick={() => {navigate(`/detail/${(props.a)}`)}}>
