@@ -9,6 +9,9 @@
   background-position : center;
 }
 
+.m_10{
+  margin: 10px;
+}
 .mt_10{
   margin-top: 10px;
 }
@@ -69,9 +72,11 @@
   padding-left :0px;
 }
 
-.cart-button{
+.cart-link{
   cursor:pointer;
-  
+}
+.font-13{
+  font-size: 13px; 
 }
 
 .one_border {

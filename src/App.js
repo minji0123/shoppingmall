@@ -113,11 +113,23 @@ function App() {
               <Card className="lastest">
                 <Card.Header>
                   최근 본 상품
-                  <Button variant="outline-danger" 
-                    className='border_none'
-                  onClick={() => {localStorage.setItem('watched',JSON.stringify([]))
-                  setClickState(!clickState)
-                }}>x</Button>
+                
+                
+                  <span className="material-symbols-rounded cart-button ml_3 font-13 cart-link"
+                     onClick={() => {localStorage.setItem('watched',JSON.stringify([]))
+                     setClickState(!clickState)
+                   }}>
+                    close
+                  </span>
+                
+                  {/* <Button variant="outline-danger" 
+                      className='border_none'
+                    onClick={() => {localStorage.setItem('watched',JSON.stringify([]))
+                    setClickState(!clickState)
+                  }}>x</Button> */}
+
+
+
                 </Card.Header>
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
@@ -211,7 +223,7 @@ function App() {
 
 function Latest(props){
   let navigate = useNavigate();
-  console.log('HERE',props.a);
+  // console.log('HERE',props.a);
   return(
     <>
     <Nav.Link onClick={() => {navigate(`/detail/${(props.a)}`)}}>

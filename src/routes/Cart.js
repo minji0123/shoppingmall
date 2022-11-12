@@ -72,32 +72,33 @@ function Cart(){
                         상품들.map((a,i)=>{
                             return(
                                 <tr key={i}>
-                                    {/* <td>{상품들[i].id}</td> */}
-                                    <td>
+                                    <td className='cart-link'
+                                    onClick={() => {navigate(`/detail/${(상품들[i].id)}`)}}
+                                    >
                                     <img 
                                         src={`https://minji0123.github.io/shoppingmall/image/image${(상품들[i].id)}.jpg`} 
                                         width="100px" 
                                     />
                                     </td>
-                                    <td
+                                    <td className='cart-link'
                                     onClick={() => {navigate(`/detail/${(상품들[i].id)}`)}}
                                     >{상품들[i].name}</td>
                                     <td className='tot_count'>{상품들[i].count}</td>
-                                    <td>{상품들[i].price * 상품들[i].count}</td>
+                                    <td> {상품들[i].price * 상품들[i].count} </td>
                                     <td>
-                                    <span className="material-symbols-rounded cart-button"
+                                    <span className="material-symbols-rounded cart-link m_10"
                                     onClick={() => {
                                         dispatch(changeCount(상품들[i].id));
                                     }}>
                                         add
                                     </span>
-                                    <span className="material-symbols-rounded cart-button"
+                                    <span className="material-symbols-rounded cart-link m_10"
                                     onClick={() => {
                                         dispatch(changeCountMinus(상품들[i].id));
                                     }}>
                                         remove
                                     </span>
-                                        <span className="material-symbols-rounded cart-button "
+                                    <span className="material-symbols-rounded cart-link m_10"
                                         onClick={() => {
                                             dispatch(changeItemDel(상품들[i].id));
                                         }}>
@@ -113,10 +114,10 @@ function Cart(){
                 <thead>
                     <tr>
                         <th></th>
-                        <th></th>
+                        <th>💜주문정보💜</th>
                         <th>{cartTotalCnt}</th>
                         <th>{cartTotalSum}</th>
-                        <th>주문하기</th>
+                        <th>구매하기</th>
                     </tr>
                 </thead>
             </Table> 
